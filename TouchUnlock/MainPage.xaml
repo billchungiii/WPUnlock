@@ -8,7 +8,5 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-
-    </Grid>
+    <Canvas Name="Container" Background="Black"/>
 </Page>

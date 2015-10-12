@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Devices.Sensors;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -22,11 +23,91 @@ namespace SensorUnlock
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public const double Threshold = 0.8;
+
+        public enum RoughOrientation
+        {
+            None,
+            Up,
+            Down,
+            Left,
+            Right,
+            Forward,
+            Back
+        }
+
+        private RoughOrientation orientation;
+        private RoughOrientation Orientation
+        {
+            get
+            {
+                return this.orientation;
+            }
+            set
+            {
+                if (this.orientation != value)
+                {
+                    this.orientation = value;
+                    UpdateOrientation();
+                }
+            }
+        }
+
+        private Accelerometer accelerometer;
+
         public MainPage()
         {
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+            this.accelerometer = Accelerometer.GetDefault();
+
+            this.accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
+        }
+
+        private void UpdateOrientation()
+        {
+            orientationLabel.Text = Orientation.ToString();
+        }
+
+        async private void Accelerometer_ReadingChanged(Accelerometer sender, AccelerometerReadingChangedEventArgs args)
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                (this.xRect.RenderTransform as CompositeTransform).ScaleY = args.Reading.AccelerationX;
+                (this.yRect.RenderTransform as CompositeTransform).ScaleY = args.Reading.AccelerationY;
+                (this.zRect.RenderTransform as CompositeTransform).ScaleY = args.Reading.AccelerationZ;
+
+                if (args.Reading.AccelerationY < -Threshold)
+                {
+                    this.Orientation = RoughOrientation.Down;
+                }
+                else if (args.Reading.AccelerationY > Threshold)
+                {
+                    this.Orientation = RoughOrientation.Up;
+                }
+                else if (args.Reading.AccelerationX < -Threshold)
+                {
+                    this.Orientation = RoughOrientation.Left;
+                }
+                else if (args.Reading.AccelerationX > Threshold)
+                {
+                    this.Orientation = RoughOrientation.Right;
+                }
+                else if (args.Reading.AccelerationZ < -Threshold)
+                {
+                    this.Orientation = RoughOrientation.Forward;
+                }
+                else if (args.Reading.AccelerationZ > Threshold)
+                {
+                    this.Orientation = RoughOrientation.Back;
+                }
+                else
+                {
+                    this.Orientation = RoughOrientation.None;
+                }
+            });
         }
 
         /// <summary>

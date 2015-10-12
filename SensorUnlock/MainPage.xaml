@@ -8,7 +8,25 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Canvas Name="Container" Background="Black">
+        <Rectangle Fill="#FFF4F4F5" Height="216" Canvas.Left="10" Stroke="Black" Canvas.Top="161" Width="380"/>
+        <Rectangle Fill="#FFF4F4F5" Height="217" Canvas.Left="10" Stroke="Black" Canvas.Top="382" Width="380"/>
+        <Rectangle x:Name="xRect" Fill="Blue" Height="216" Canvas.Left="68" Stroke="Black" Canvas.Top="161" Width="37" RenderTransformOrigin="0.5,1">
+            <Rectangle.RenderTransform>
+                <CompositeTransform/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle x:Name="yRect" Fill="#FFD100FF" Height="216" Canvas.Left="184" Stroke="Black" Canvas.Top="161" Width="37" RenderTransformOrigin="0.5,1">
+            <Rectangle.RenderTransform>
+                <CompositeTransform/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle x:Name="zRect" Fill="Red" Height="216" Canvas.Left="306" Stroke="Black" Canvas.Top="161" Width="37" RenderTransformOrigin="0.5,1">
+            <Rectangle.RenderTransform>
+                <CompositeTransform/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <TextBlock x:Name="orientationLabel" Height="43" Canvas.Left="68" TextWrapping="Wrap" Text="None" Canvas.Top="52" Width="275" FontSize="32" TextAlignment="Center"/>
 
-    </Grid>
+    </Canvas>
 </Page>
