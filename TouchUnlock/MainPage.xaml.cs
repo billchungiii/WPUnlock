@@ -29,16 +29,16 @@ namespace TouchUnlock
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            this.colorPicker.SelectedColorChanged += ColorPicker_SelectedColorChanged;
+            //this.colorPicker.SelectedColorChanged += ColorPicker_SelectedColorChanged;
         }
 
         private void ColorPicker_SelectedColorChanged(object sender, EventArgs e)
         {
-            ColorPicker.ColorPicker picker = sender as ColorPicker.ColorPicker;
-            Debug.WriteLine(picker.SelectedColor.Color);
-            Debug.WriteLine("r:" + picker.RedValue.ToString());
-            Debug.WriteLine("g:" + picker.GreenValue.ToString());
-            Debug.WriteLine("b:" + picker.BlueValue.ToString());
+            //ColorPicker.ColorPicker picker = sender as ColorPicker.ColorPicker;
+            //Debug.WriteLine(picker.SelectedColor.Color);
+            //Debug.WriteLine("r:" + picker.RedValue.ToString());
+            //Debug.WriteLine("g:" + picker.GreenValue.ToString());
+            //Debug.WriteLine("b:" + picker.BlueValue.ToString());
         }
 
         /// <summary>
