@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorUnlock", "SensorUnlock\SensorUnlock.csproj", "{CB523E37-0395-4EA0-822C-AD4415ACA07E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouchUnlock", "TouchUnlock\TouchUnlock.csproj", "{3E2873D2-3B5A-4687-BB86-5228E9326924}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{580BE01D-0BEE-4EF5-8473-8FC1BBCF48E1}"
+	ProjectSection(SolutionItems) = preProject
+		InkCanvas.cs = InkCanvas.cs
+		Vector.cs = Vector.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
