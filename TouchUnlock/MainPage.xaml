@@ -15,7 +15,7 @@
 
     <Canvas x:Name="Container" Background="Black">
 
-        <c4fControls:ColorPicker Name="colorPick1" Height="439" Width="100" Canvas.Left="100" Canvas.Top="10" RenderTransformOrigin="0.5,0.5">
+        <c4fControls:ColorPicker Name="colorPick1" Height="439" Width="300" Canvas.Left="150" Canvas.Top="10" RenderTransformOrigin="0.5,0.5">
             <c4fControls:ColorPicker.RenderTransform>
                 <RotateTransform CenterX="0.5" CenterY="0.5" Angle="-90" />
             </c4fControls:ColorPicker.RenderTransform>

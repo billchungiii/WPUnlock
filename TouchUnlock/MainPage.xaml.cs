@@ -30,6 +30,7 @@ namespace TouchUnlock
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
             this.colorPick1.ColorChanged += colorPick1_ColorChanged;
+            this.colorPick1.Color = Windows.UI.Color.FromArgb(255, 0, 0, 255);
             //this.colorPicker.SelectedColorChanged += ColorPicker_SelectedColorChanged;
         }
 
@@ -39,7 +40,7 @@ namespace TouchUnlock
             Debug.WriteLine("r:" + color.R);
             Debug.WriteLine("g:" + color.G);
             Debug.WriteLine("b:" + color.B);
-            Debug.WriteLine("b:" + color.A);
+            Debug.WriteLine("a:" + color.A);
         }
         
         /// <summary>
