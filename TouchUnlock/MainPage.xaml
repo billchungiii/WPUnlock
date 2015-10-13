@@ -8,9 +8,19 @@
     x:Class="TouchUnlock.MainPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <!--
+    xmlns:c4fControls="using:Coding4Fun.Toolkit.Controls"
+    -->
 
     <Canvas x:Name="Container" Background="Black">
-        <c4fControls:ColorPicker Height="439" Width="380" Canvas.Left="10" Canvas.Top="10"/>
+
+        <c4fControls:ColorPicker Name="colorPick1" Height="439" Width="100" Canvas.Left="100" Canvas.Top="10" RenderTransformOrigin="0.5,0.5">
+            <c4fControls:ColorPicker.RenderTransform>
+                <RotateTransform CenterX="0.5" CenterY="0.5" Angle="-90" />
+            </c4fControls:ColorPicker.RenderTransform>
+        </c4fControls:ColorPicker>
+        
         <!--
         <c4fControls:ColorPicker Height="300" Width="300" />
         -->

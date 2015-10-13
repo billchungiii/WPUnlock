@@ -29,18 +29,19 @@ namespace TouchUnlock
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
+            this.colorPick1.ColorChanged += colorPick1_ColorChanged;
             //this.colorPicker.SelectedColorChanged += ColorPicker_SelectedColorChanged;
         }
 
-        private void ColorPicker_SelectedColorChanged(object sender, EventArgs e)
+        void colorPick1_ColorChanged(object sender, Windows.UI.Color color)
         {
-            //ColorPicker.ColorPicker picker = sender as ColorPicker.ColorPicker;
             //Debug.WriteLine(picker.SelectedColor.Color);
-            //Debug.WriteLine("r:" + picker.RedValue.ToString());
-            //Debug.WriteLine("g:" + picker.GreenValue.ToString());
-            //Debug.WriteLine("b:" + picker.BlueValue.ToString());
+            Debug.WriteLine("r:" + color.R);
+            Debug.WriteLine("g:" + color.G);
+            Debug.WriteLine("b:" + color.B);
+            Debug.WriteLine("b:" + color.A);
         }
-
+        
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>
