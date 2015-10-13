@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Diagnostics;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -27,6 +28,17 @@ namespace TouchUnlock
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+            this.colorPicker.SelectedColorChanged += ColorPicker_SelectedColorChanged;
+        }
+
+        private void ColorPicker_SelectedColorChanged(object sender, EventArgs e)
+        {
+            ColorPicker.ColorPicker picker = sender as ColorPicker.ColorPicker;
+            Debug.WriteLine(picker.SelectedColor.Color);
+            Debug.WriteLine("r:" + picker.RedValue.ToString());
+            Debug.WriteLine("g:" + picker.GreenValue.ToString());
+            Debug.WriteLine("b:" + picker.BlueValue.ToString());
         }
 
         /// <summary>

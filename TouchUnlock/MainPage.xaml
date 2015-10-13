@@ -10,6 +10,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas x:Name="Container" Background="Black">
-        <ColorPicker:ColorPicker Height="402" Canvas.Left="10" Canvas.Top="180" Width="380"/>
+        <ColorPicker:ColorPicker x:Name="colorPicker" Height="402" Canvas.Left="10" Canvas.Top="180" Width="380"/>
     </Canvas>
 </Page>
