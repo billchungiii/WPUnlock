@@ -8,19 +8,31 @@
     x:Class="TouchUnlock.MainPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
+
     <!--
     xmlns:c4fControls="using:Coding4Fun.Toolkit.Controls"
     -->
 
     <Canvas x:Name="Container" Background="Black">
 
-        <c4fControls:ColorPicker Name="colorPick1" Height="439" Width="300" Canvas.Left="150" Canvas.Top="10" RenderTransformOrigin="0.5,0.5">
+        <c4fControls:ColorPicker Name="colorPick1" Height="300" Width="200" Canvas.Left="60" Canvas.Top="0" RenderTransformOrigin="0.5,0.5" Canvas.ZIndex="2">
+            <c4fControls:ColorPicker.RenderTransform>
+                <RotateTransform CenterX="0.5" CenterY="0.5" Angle="-90" />
+            </c4fControls:ColorPicker.RenderTransform>
+        </c4fControls:ColorPicker>
+
+        <c4fControls:ColorPicker Name="colorPick2" Height="300" Width="200" Canvas.Left="60" Canvas.Top="235" RenderTransformOrigin="0.5,0.5" Canvas.ZIndex="1">
             <c4fControls:ColorPicker.RenderTransform>
                 <RotateTransform CenterX="0.5" CenterY="0.5" Angle="-90" />
             </c4fControls:ColorPicker.RenderTransform>
         </c4fControls:ColorPicker>
         
+        <!--
+        <div>Icon made by <a href="http://www.icomoon.io" title="Icomoon">Icomoon</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+        -->
+        <Button x:Name="unlockButton" HorizontalAlignment="Stretch" Height="110" Canvas.Left="139" Canvas.Top="512" VerticalAlignment="Stretch" Width="118" Background="White">
+            <Image x:Name="image" Height="70" Width="80" Source="padlock21.png"/>
+        </Button>
         <!--
         <c4fControls:ColorPicker Height="300" Width="300" />
         -->
