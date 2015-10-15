@@ -59,7 +59,7 @@ namespace TouchUnlock
 
             //this.colorPick1.ColorChanged += colorPick1_ColorChanged;
             this.colorPick1.Color = Windows.UI.Color.FromArgb(255, 0, 0, 255);
-            this.colorPick2.Color = Windows.UI.Color.FromArgb(0, 255, 0, 255);
+            this.colorPick2.Color = Windows.UI.Color.FromArgb(255, 255, 0, 255);
             //this.colorPicker.SelectedColorChanged += ColorPicker_SelectedColorChanged;
             
             this.unlockButton.Click += UnlockButton_Click;
