@@ -8,6 +8,57 @@
     x:Class="TouchUnlock.MainPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Storyboard x:Name="ShowUnlock">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="unlockedScreen">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-3.521"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="-7.059">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <SineEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="unlockedScreen">
+                <EasingDoubleKeyFrame KeyTime="0" Value="664.549"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="-8.078">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <SineEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="unlockedScreen">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="HideUnlock">
+            <DoubleAnimation Duration="0:0:1" To="681.273" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="unlockedScreen" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="unlockedScreen">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
 
     <!--
     xmlns:c4fControls="using:Coding4Fun.Toolkit.Controls"
@@ -15,23 +66,28 @@
 
     <Canvas x:Name="Container" Background="Black">
 
-        <c4fControls:ColorPicker Name="colorPick1" Height="300" Width="200" Canvas.Left="60" Canvas.Top="0" RenderTransformOrigin="0.5,0.5" Canvas.ZIndex="2">
+        <c4fControls:ColorPicker x:Name="colorPick1" Height="300" Width="200" Canvas.Left="60" Canvas.Top="0" RenderTransformOrigin="0.5,0.5">
             <c4fControls:ColorPicker.RenderTransform>
                 <RotateTransform CenterX="0.5" CenterY="0.5" Angle="-90" />
             </c4fControls:ColorPicker.RenderTransform>
         </c4fControls:ColorPicker>
 
-        <c4fControls:ColorPicker Name="colorPick2" Height="300" Width="200" Canvas.Left="60" Canvas.Top="235" RenderTransformOrigin="0.5,0.5" Canvas.ZIndex="1">
+        <c4fControls:ColorPicker x:Name="colorPick2" Height="300" Width="200" Canvas.Left="60" Canvas.Top="235" RenderTransformOrigin="0.5,0.5">
             <c4fControls:ColorPicker.RenderTransform>
                 <RotateTransform CenterX="0.5" CenterY="0.5" Angle="-90" />
             </c4fControls:ColorPicker.RenderTransform>
         </c4fControls:ColorPicker>
-        
         <!--
         <div>Icon made by <a href="http://www.icomoon.io" title="Icomoon">Icomoon</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
         -->
         <Button x:Name="unlockButton" HorizontalAlignment="Stretch" Height="110" Canvas.Left="139" Canvas.Top="512" VerticalAlignment="Stretch" Width="118" Background="White">
             <Image x:Name="image" Height="70" Width="80" Source="padlock21.png"/>
+        </Button>
+        <Button x:Name="unlockedScreen" HorizontalAlignment="Stretch" Canvas.Left="-103" VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5" Canvas.Top="-31" Visibility="Collapsed">
+            <Button.RenderTransform>
+                <CompositeTransform/>
+            </Button.RenderTransform>
+            <Image x:Name="unlockedWallpaper" Height="671" Width="576" Source="unlocked_shot.jpg" RenderTransformOrigin="0.5,0.5"/>
         </Button>
         <!--
         <c4fControls:ColorPicker Height="300" Width="300" />
