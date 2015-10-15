@@ -74,7 +74,7 @@ namespace TouchUnlock
 
         private void UnlockButton_Click(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("PRESSED");
+           // Debug.WriteLine("PRESSED");
             // check the colors
             //From: http://stackoverflow.com/questions/5392061/algorithm-to-check-similarity-of-colors-based-on-rgb-values-or-maybe-hsv   
             //I would recommend using cie94 (deltae-1994), it's said to be a decent representation of the human color perception. i've used it quite a bit in my computer-vision related applications, and i am rather happy with the result.
@@ -86,27 +86,27 @@ namespace TouchUnlock
             //diff = deltae94(labcolor1, labcolor2)
             Color color = this.colorPick1.Color;
 
-            Debug.WriteLine("secretCIEL1:" + secretCIEL1 + " secretCIELa1:" + secretCIEa1 + " secretCIEb1:" + secretCIEb1);
-            Debug.WriteLine("r:" + color.R + " g:" + color.G + " b:" + color.B);
+            //Debug.WriteLine("secretCIEL1:" + secretCIEL1 + " secretCIELa1:" + secretCIEa1 + " secretCIEb1:" + secretCIEb1);
+            //Debug.WriteLine("r:" + color.R + " g:" + color.G + " b:" + color.B);
             CIEXYZ c1 = RGBtoXYZ(color.R, color.G, color.B);
-            Debug.WriteLine("x:" + c1.X + " y:" + c1.Y + " z:" + c1.Z);
+            //Debug.WriteLine("x:" + c1.X + " y:" + c1.Y + " z:" + c1.Z);
             CIELab lab1 = XYZtoLab(c1);
-            Debug.WriteLine("lab1L:" + lab1.L + " lab1a:" + lab1.A + " lab1b:" + lab1.B);
+            //Debug.WriteLine("lab1L:" + lab1.L + " lab1a:" + lab1.A + " lab1b:" + lab1.B);
             
             double delta = delta1994(lab1.L, lab1.A, lab1.B, secretCIEL1, secretCIEa1, secretCIEb1);
-            Debug.WriteLine("delta:" + delta);
-            if (delta <= 18)
+            //Debug.WriteLine("delta:" + delta);
+            if (delta <= 20)
             {
                 // pretty close match, now check the next one
                 Color color2 = this.colorPick2.Color;
                 CIELab lab2 = XYZtoLab(RGBtoXYZ(color2.R, color2.G, color2.B));
                 delta = delta1994(lab2.L, lab2.A, lab2.B, secretCIEL2, secretCIEa2, secretCIEb2);
-                if (delta <= 18)
+                if (delta <= 20)
                 {
                     // reset the colors
                     this.colorPick1.Color = Windows.UI.Color.FromArgb(255, 0, 0, 255);
                     this.colorPick2.Color = Windows.UI.Color.FromArgb(0, 255, 0, 255);
-                    Debug.WriteLine("UNLOCKED WOOWOWOWOWOW");
+                    //Debug.WriteLine("UNLOCKED WOOWOWOWOWOW");
                     Storyboard sb = (Storyboard)this.Resources["ShowUnlock"];
                     sb.Begin();
                 }
