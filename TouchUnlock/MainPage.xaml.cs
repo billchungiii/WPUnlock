@@ -28,6 +28,7 @@ namespace TouchUnlock
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private const float allowedColorDelta = 25f;
         private float rainbowProgress = 0;
         private DispatcherTimer timer;
 
@@ -57,17 +58,50 @@ namespace TouchUnlock
             // start the timer
             this.timer.Start();
 
-            //this.colorPick1.ColorChanged += colorPick1_ColorChanged;
-            this.colorPick1.Color = Windows.UI.Color.FromArgb(255, 0, 0, 255);
-            this.colorPick2.Color = Windows.UI.Color.FromArgb(255, 255, 0, 255);
-            //this.colorPicker.SelectedColorChanged += ColorPicker_SelectedColorChanged;
-            
+            setBackDefaultColors();
+
             this.unlockButton.Click += UnlockButton_Click;
             this.unlockedScreen.Click += UnlockedScreen_Click;
+
+            this.colorPick1.ColorChanged += colorPick1_ColorChanged;
+            this.colorPick2.ColorChanged += colorPick2_ColorChanged;
+        }
+
+        private void setBackDefaultColors()
+        {
+            Color c1 = Windows.UI.Color.FromArgb(255, 0, 0, 255);
+            Color c2 = Windows.UI.Color.FromArgb(255, 255, 0, 255);
+            this.colorPick1.Color = c1;
+            this.colorPick2.Color = c2;
+
+            setBackColor();
+        }
+
+        private void setBackColor()
+        {
+            Color c1 = this.colorPick1.Color;
+            Color c2 = this.colorPick2.Color;
+
+            this.Container.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255,
+                (byte)((c1.R + c2.R) / 2),
+                (byte)((c1.G + c2.G) / 2),
+                (byte)((c1.B + c2.B) / 2)));
+        }
+
+        void colorPick1_ColorChanged(object sender, Windows.UI.Color color)
+        {
+            setBackColor();
+        }
+
+        void colorPick2_ColorChanged(object sender, Windows.UI.Color color)
+        {
+            setBackColor();
         }
 
         private void UnlockedScreen_Click(object sender, RoutedEventArgs e)
         {
+            setBackDefaultColors();
+
             Storyboard sb = (Storyboard)this.Resources["HideUnlock"];
             sb.Begin();
         }
@@ -85,6 +119,12 @@ namespace TouchUnlock
             //xyz to lab for both colors
             //diff = deltae94(labcolor1, labcolor2)
             Color color = this.colorPick1.Color;
+            Color color2 = this.colorPick2.Color;
+
+            this.Container.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 
+                (byte)((color.R+color2.R)/2),
+                (byte)((color.G + color2.G) / 2),
+                (byte)((color.B + color2.B) / 2)));
 
             //Debug.WriteLine("secretCIEL1:" + secretCIEL1 + " secretCIELa1:" + secretCIEa1 + " secretCIEb1:" + secretCIEb1);
             //Debug.WriteLine("r:" + color.R + " g:" + color.G + " b:" + color.B);
@@ -95,17 +135,16 @@ namespace TouchUnlock
             
             double delta = delta1994(lab1.L, lab1.A, lab1.B, secretCIEL1, secretCIEa1, secretCIEb1);
             //Debug.WriteLine("delta:" + delta);
-            if (delta <= 20)
+            if (delta <= allowedColorDelta)
             {
                 // pretty close match, now check the next one
-                Color color2 = this.colorPick2.Color;
                 CIELab lab2 = XYZtoLab(RGBtoXYZ(color2.R, color2.G, color2.B));
                 delta = delta1994(lab2.L, lab2.A, lab2.B, secretCIEL2, secretCIEa2, secretCIEb2);
-                if (delta <= 20)
+                if (delta <= allowedColorDelta)
                 {
                     // reset the colors
                     this.colorPick1.Color = Windows.UI.Color.FromArgb(255, 0, 0, 255);
-                    this.colorPick2.Color = Windows.UI.Color.FromArgb(0, 255, 0, 255);
+                    this.colorPick2.Color = Windows.UI.Color.FromArgb(255, 255, 0, 255);
                     //Debug.WriteLine("UNLOCKED WOOWOWOWOWOW");
                     Storyboard sb = (Storyboard)this.Resources["ShowUnlock"];
                     sb.Begin();
@@ -203,14 +242,6 @@ if (Math.Sqrt(xDE) > (Math.Sqrt(Math.Abs(xDL)) + Math.Sqrt(Math.Abs(xDC))))
             this.unlockButton.Background = new SolidColorBrush(newColor);
         }
 
-        void colorPick1_ColorChanged(object sender, Windows.UI.Color color)
-        {
-            //Debug.WriteLine(picker.SelectedColor.Color);
-            Debug.WriteLine("r:" + color.R);
-            Debug.WriteLine("g:" + color.G);
-            Debug.WriteLine("b:" + color.B);
-            Debug.WriteLine("a:" + color.A);
-        }
         
         public Color Rainbow(float progress)
         {
