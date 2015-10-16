@@ -8,28 +8,95 @@
     x:Class="SensorUnlock.MainPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Storyboard x:Name="ShowUnlock">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="unlockShot">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="unlockShot">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-1.667">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-1.667">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="unlockShot">
+                <EasingDoubleKeyFrame KeyTime="0" Value="638.333">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="8.333">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="HideUnlock">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="unlockShot">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.8">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="unlockShot">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="633.333">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
 
-	<Canvas x:Name="Container" Background="Black">
-		<Rectangle x:Name="background" Fill="Black" Height="362" Canvas.Left="10" Stroke="Black" Canvas.Top="43" Width="380"/>
-		<Rectangle x:Name="leftRect" Fill="Blue" Height="190" Canvas.Left="147.845" Stroke="White" Canvas.Top="164.5" Width="104" RenderTransformOrigin="0.5,1" UseLayoutRounding="False" d:LayoutRounding="Auto">
-			<Rectangle.RenderTransform>
-				<CompositeTransform Rotation="-90"/>
-			</Rectangle.RenderTransform>
-		</Rectangle>
-		<Rectangle x:Name="rightRect" Fill="#FFD100FF" Height="190" Canvas.Left="151.494" Stroke="White" Canvas.Top="164.5" Width="104" RenderTransformOrigin="0.5,1" UseLayoutRounding="False" d:LayoutRounding="Auto">
-			<Rectangle.RenderTransform>
-				<CompositeTransform Rotation="90"/>
-			</Rectangle.RenderTransform>
-		</Rectangle>
-		<Rectangle x:Name="forwardRect" Fill="Red" Height="197" Canvas.Left="149" Stroke="White" Canvas.Top="103" Width="104" RenderTransformOrigin="0.5,1">
-			<Rectangle.RenderTransform>
-				<CompositeTransform Rotation="0"/>
-			</Rectangle.RenderTransform>
-		</Rectangle>
-		<TextBlock x:Name="orientationLabel" Height="43" Canvas.Left="67" TextWrapping="Wrap" Text="None" Canvas.Top="-47" Width="275" FontSize="32" TextAlignment="Center" Visibility="Collapsed"/>
-		<Button x:Name="activateButton" Canvas.Left="10" Canvas.Top="413" Height="121" Width="380" ClickMode="Hover" Background="White">
-			<Image Height="100" Width="100" Source="fingerprint.jpg"/>
-		</Button>
+    <Canvas x:Name="Container" Background="Black">
+        <Rectangle x:Name="background" Fill="Black" Height="362" Canvas.Left="10" Stroke="Black" Canvas.Top="43" Width="380"/>
+        <Rectangle x:Name="leftRect" Fill="Blue" Height="190" Canvas.Left="147.845" Stroke="White" Canvas.Top="164.5" Width="104" RenderTransformOrigin="0.5,1" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="-90"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle x:Name="rightRect" Fill="#FFD100FF" Height="190" Canvas.Left="151.494" Stroke="White" Canvas.Top="164.5" Width="104" RenderTransformOrigin="0.5,1" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="90"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle x:Name="forwardRect" Fill="Red" Height="197" Canvas.Left="149" Stroke="White" Canvas.Top="103" Width="104" RenderTransformOrigin="0.5,1">
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="0"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <TextBlock x:Name="orientationLabel" Height="43" Canvas.Left="67" TextWrapping="Wrap" Text="None" Canvas.Top="-47" Width="275" FontSize="32" TextAlignment="Center" Visibility="Collapsed"/>
+        <Button x:Name="activateButton" Canvas.Left="10" Canvas.Top="413" Height="121" Width="380" ClickMode="Hover" Background="White">
+            <Image Height="100" Width="100" Source="fingerprint.jpg"/>
+        </Button>
+        <Button x:Name="unlockShot" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="650" Width="440" Canvas.Left="-17" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <CompositeTransform/>
+            </Button.RenderTransform>
+            <Image x:Name="image" Height="744" Width="421" Source="unlocked_shot.jpg"/>
+        </Button>
 
-	</Canvas>
+    </Canvas>
 </Page>

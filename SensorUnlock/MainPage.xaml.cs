@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Devices.Sensors;
 using Windows.UI;
 using System.Diagnostics;
+using Windows.UI.Xaml.Media.Animation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -35,7 +36,7 @@ namespace SensorUnlock
             Color.FromArgb(255, 255, 0 , 0),
             Color.FromArgb(255, 0, 255 , 0),
             Color.FromArgb(255, 0, 0 , 255),
-            Color.FromArgb(255, 0, 255, 255)
+            Color.FromArgb(255, 255, 255, 0)
         };
 
         private List<Rectangle> rects = new List<Rectangle>();
@@ -87,6 +88,8 @@ namespace SensorUnlock
             rects.Add(this.rightRect);
             rects.Add(this.forwardRect);
 
+            this.unlockShot.Click += UnlockShot_Click;
+
             this.activateButton.PointerPressed += activateButton_PointerPressed;
             this.activateButton.PointerReleased += activateButton_PointerReleased;
             //this.activateButton.AddHandler(PointerPressedEvent, activateButton_PointerPressed, true);
@@ -95,6 +98,13 @@ namespace SensorUnlock
             this.accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
 
             setRandColors();
+        }
+
+        private void UnlockShot_Click(object sender, RoutedEventArgs e)
+        {
+            setRandColors();
+            Storyboard sb = (Storyboard)this.Resources["HideUnlock"];
+            sb.Begin();
         }
 
         void activateButton_PointerReleased(object sender, PointerRoutedEventArgs e)
@@ -144,6 +154,9 @@ namespace SensorUnlock
             if (correctInARow == MATCH_NUM)
             {
                 Debug.WriteLine("Unlock!!!");
+                Storyboard sb = (Storyboard)this.Resources["ShowUnlock"];
+                sb.Begin();
+                correctInARow = 0;
             }
             else
             {
@@ -258,22 +271,22 @@ namespace SensorUnlock
 
                 if (args.Reading.AccelerationX <= 0)
                 {
-                    (this.leftRect.RenderTransform as CompositeTransform).ScaleY = -args.Reading.AccelerationX;
-                    (this.rightRect.RenderTransform as CompositeTransform).ScaleY = 0;
+                    (this.leftRect.RenderTransform as CompositeTransform).ScaleY = -args.Reading.AccelerationX + 0.1;
+                    (this.rightRect.RenderTransform as CompositeTransform).ScaleY = 0.1;
                 }
                 else
                 {
-                    (this.leftRect.RenderTransform as CompositeTransform).ScaleY = 0;
-                    (this.rightRect.RenderTransform as CompositeTransform).ScaleY = args.Reading.AccelerationX;
+                    (this.leftRect.RenderTransform as CompositeTransform).ScaleY = 0.1;
+                    (this.rightRect.RenderTransform as CompositeTransform).ScaleY = args.Reading.AccelerationX + 0.1;
                 }
 
                 if (args.Reading.AccelerationZ <= 0)
                 {
-                    (this.forwardRect.RenderTransform as CompositeTransform).ScaleY = -args.Reading.AccelerationZ;
+                    (this.forwardRect.RenderTransform as CompositeTransform).ScaleY = -args.Reading.AccelerationZ -0.1;
                 }
                 else
                 {
-                    (this.forwardRect.RenderTransform as CompositeTransform).ScaleY = 0;
+                    (this.forwardRect.RenderTransform as CompositeTransform).ScaleY = 0.1;
                 }
 
                 if (activateButtonDown)
