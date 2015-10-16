@@ -56,7 +56,7 @@ namespace TouchUnlock
             // subscribe to tick event
             timer.Tick += Timer_Tick;
             // start the timer
-            this.timer.Start();
+            //this.timer.Start();
 
             setBackDefaultColors();
 

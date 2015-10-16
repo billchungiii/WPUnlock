@@ -1,32 +1,35 @@
 ﻿<Page
-    x:Class="SensorUnlock.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SensorUnlock"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="using:Coding4Fun.Toolkit.Controls"
+    x:Class="SensorUnlock.MainPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Canvas Name="Container" Background="Black">
-        <Rectangle Fill="#FFF4F4F5" Height="216" Canvas.Left="10" Stroke="Black" Canvas.Top="161" Width="380"/>
-        <Rectangle Fill="#FFF4F4F5" Height="217" Canvas.Left="10" Stroke="Black" Canvas.Top="382" Width="380"/>
-        <Rectangle x:Name="xRect" Fill="Blue" Height="216" Canvas.Left="68" Stroke="Black" Canvas.Top="161" Width="37" RenderTransformOrigin="0.5,1">
-            <Rectangle.RenderTransform>
-                <CompositeTransform/>
-            </Rectangle.RenderTransform>
-        </Rectangle>
-        <Rectangle x:Name="yRect" Fill="#FFD100FF" Height="216" Canvas.Left="184" Stroke="Black" Canvas.Top="161" Width="37" RenderTransformOrigin="0.5,1">
-            <Rectangle.RenderTransform>
-                <CompositeTransform/>
-            </Rectangle.RenderTransform>
-        </Rectangle>
-        <Rectangle x:Name="zRect" Fill="Red" Height="216" Canvas.Left="306" Stroke="Black" Canvas.Top="161" Width="37" RenderTransformOrigin="0.5,1">
-            <Rectangle.RenderTransform>
-                <CompositeTransform/>
-            </Rectangle.RenderTransform>
-        </Rectangle>
-        <TextBlock x:Name="orientationLabel" Height="43" Canvas.Left="68" TextWrapping="Wrap" Text="None" Canvas.Top="52" Width="275" FontSize="32" TextAlignment="Center"/>
+	<Canvas x:Name="Container" Background="Black">
+		<Rectangle x:Name="background" Fill="Black" Height="362" Canvas.Left="10" Stroke="Black" Canvas.Top="43" Width="380"/>
+		<Rectangle x:Name="leftRect" Fill="Blue" Height="190" Canvas.Left="147.845" Stroke="White" Canvas.Top="164.5" Width="104" RenderTransformOrigin="0.5,1" UseLayoutRounding="False" d:LayoutRounding="Auto">
+			<Rectangle.RenderTransform>
+				<CompositeTransform Rotation="-90"/>
+			</Rectangle.RenderTransform>
+		</Rectangle>
+		<Rectangle x:Name="rightRect" Fill="#FFD100FF" Height="190" Canvas.Left="151.494" Stroke="White" Canvas.Top="164.5" Width="104" RenderTransformOrigin="0.5,1" UseLayoutRounding="False" d:LayoutRounding="Auto">
+			<Rectangle.RenderTransform>
+				<CompositeTransform Rotation="90"/>
+			</Rectangle.RenderTransform>
+		</Rectangle>
+		<Rectangle x:Name="forwardRect" Fill="Red" Height="197" Canvas.Left="149" Stroke="White" Canvas.Top="103" Width="104" RenderTransformOrigin="0.5,1">
+			<Rectangle.RenderTransform>
+				<CompositeTransform Rotation="0"/>
+			</Rectangle.RenderTransform>
+		</Rectangle>
+		<TextBlock x:Name="orientationLabel" Height="43" Canvas.Left="67" TextWrapping="Wrap" Text="None" Canvas.Top="-47" Width="275" FontSize="32" TextAlignment="Center" Visibility="Collapsed"/>
+		<Button x:Name="activateButton" Canvas.Left="10" Canvas.Top="413" Height="121" Width="380" ClickMode="Hover" Background="White">
+			<Image Height="100" Width="100" Source="fingerprint.jpg"/>
+		</Button>
 
-    </Canvas>
+	</Canvas>
 </Page>
